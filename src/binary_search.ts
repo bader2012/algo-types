@@ -26,6 +26,6 @@ function binarySearch(arr: number[], target: number): number {
   return result;
 }
 
-// console.log(binarySearch([1, 2, 3, 4, 5], 3));
+console.log(binarySearch([1, 2, 3, 4, 5], 3));
 
 export default binarySearch;
