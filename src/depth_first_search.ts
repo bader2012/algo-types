@@ -13,10 +13,16 @@ class GraphDFS {
     visited = new Set<number>(),
     result: number[] = []
   ): number[] {
+    // Return an empty array if the start node is not in the graph
+    if (!this.adjacencyList.has(start)) {
+      return [];
+    }
+
     if (!visited.has(start)) {
       visited.add(start);
       result.push(start);
 
+      // Iterate over neighbors in the order they were added
       for (const neighbor of this.adjacencyList.get(start) || []) {
         this.dfs(neighbor, visited, result);
       }

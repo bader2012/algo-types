@@ -21,6 +21,7 @@ class Dijkstra {
     const pq: [number, number][] = []; // [vertex, distance]
     pq.push([start, 0]);
 
+    // Initialize distances for all vertices
     this.adjacencyList.forEach((_, key) => distances.set(key, Infinity));
     distances.set(start, 0);
 
@@ -41,8 +42,14 @@ class Dijkstra {
       }
     }
 
-    // Exclude disconnected vertices
-    return new Map([...distances].filter(([_, dist]) => dist !== Infinity));
+    // Ensure disconnected vertices are included with Infinity distance
+    this.adjacencyList.forEach((_, vertex) => {
+      if (!distances.has(vertex)) {
+        distances.set(vertex, Infinity);
+      }
+    });
+
+    return distances;
   }
 }
 

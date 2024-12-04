@@ -15,15 +15,15 @@ describe("topologicalSort", () => {
     ).toEqual([0, 1, 2, 3]);
   });
 
-  it("should return the correct order for a graph with cycles", () => {
-    expect(
-      topologicalSort(4, [
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 0],
-      ])
-    ).toEqual([0, 1, 2, 3]);
+  it("should return an empty array for a graph with cycles", () => {
+    const vertices = 4;
+    const edges: [number, number][] = [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 0],
+    ];
+    expect(topologicalSort(vertices, edges)).toEqual([]);
   });
 
   it("should return an empty array for a graph with cycles", () => {
@@ -49,12 +49,12 @@ describe("topologicalSort", () => {
     ).toEqual([0, 1, 2, 3, 4]);
   });
 
-  it("should return the correct order for a graph with self-loops", () => {
-    expect(
-      topologicalSort(2, [
-        [0, 0],
-        [0, 1],
-      ])
-    ).toEqual([0, 1]);
+  it("should return an empty array for a graph with self-loops", () => {
+    const vertices = 2;
+    const edges: [number, number][] = [
+      [0, 1],
+      [1, 1],
+    ];
+    expect(topologicalSort(vertices, edges)).toEqual([]);
   });
 });

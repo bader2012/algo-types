@@ -1,11 +1,14 @@
 function floydWarshall(graph: number[][]): number[][] {
-  const dist = graph.map((row) => [...row]);
+  const dist = graph.map((row) => [...row]); // Clone the input graph
   const n = graph.length;
 
+  // Perform the Floyd-Warshall algorithm
   for (let k = 0; k < n; k++) {
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < n; j++) {
-        dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        if (dist[i][k] !== Infinity && dist[k][j] !== Infinity) {
+          dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        }
       }
     }
   }

@@ -7,7 +7,14 @@ class UnionFind {
     this.rank = Array(size).fill(0);
   }
 
+  private validateIndex(index: number): void {
+    if (index < 0 || index >= this.parent.length) {
+      throw new Error(`Index ${index} is out of bounds`);
+    }
+  }
+
   find(x: number): number {
+    this.validateIndex(x);
     if (this.parent[x] !== x) {
       this.parent[x] = this.find(this.parent[x]); // Path compression
     }
@@ -15,6 +22,8 @@ class UnionFind {
   }
 
   union(x: number, y: number): void {
+    this.validateIndex(x);
+    this.validateIndex(y);
     const rootX = this.find(x);
     const rootY = this.find(y);
 
@@ -31,6 +40,8 @@ class UnionFind {
   }
 
   connected(x: number, y: number): boolean {
+    this.validateIndex(x);
+    this.validateIndex(y);
     return this.find(x) === this.find(y);
   }
 }
