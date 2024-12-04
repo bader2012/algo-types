@@ -1,57 +1,60 @@
-function topologicalSort(
-  vertices: number,
-  edges: [number, number][]
-): number[] {
-  const inDegree = new Array(vertices).fill(0);
-  const adjList = new Map<number, number[]>();
-  const queue: number[] = [];
-  const result: number[] = [];
+import { topologicalSort } from "../src/topological_sort";
 
-  console.log('inDegree', inDegree);
-  console.log('adjList', adjList);
+describe("topologicalSort", () => {
+  it("should return an empty array for an empty graph", () => {
+    expect(topologicalSort(0, [])).toEqual([]);
+  });
 
-  for (const [u, v] of edges) {
-    if (!adjList.has(u)) adjList.set(u, []);
-    adjList.get(u)!.push(v);
-    inDegree[v]++;
-  }
+  it("should return the correct order for a simple graph", () => {
+    expect(
+      topologicalSort(4, [
+        [0, 1],
+        [1, 2],
+        [2, 3],
+      ])
+    ).toEqual([0, 1, 2, 3]);
+  });
 
-  console.log('inDegree', inDegree);
-  console.log('adjList', adjList);
+  it("should return the correct order for a graph with cycles", () => {
+    expect(
+      topologicalSort(4, [
+        [0, 1],
+        [1, 2],
+        [2, 3],
+        [3, 0],
+      ])
+    ).toEqual([0, 1, 2, 3]);
+  });
 
-  for (let i = 0; i < vertices; i++) {
-    if (inDegree[i] === 0) queue.push(i);
-  }
+  it("should return an empty array for a graph with cycles", () => {
+    expect(
+      topologicalSort(4, [
+        [0, 1],
+        [1, 2],
+        [2, 3],
+        [3, 0],
+        [0, 3],
+      ])
+    ).toEqual([]);
+  });
 
-  console.log('queue', queue);
+  it("should return the correct order for a graph with disconnected vertices", () => {
+    expect(
+      topologicalSort(5, [
+        [0, 1],
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ])
+    ).toEqual([0, 1, 2, 3, 4]);
+  });
 
-  while (queue.length > 0) {
-    const vertex = queue.shift()!;
-    result.push(vertex);
-
-    console.log('vertex', vertex);
-
-    for (const neighbor of adjList.get(vertex) || []) {
-      inDegree[neighbor]--;
-      if (inDegree[neighbor] === 0) queue.push(neighbor);
-    }
-
-    console.log('inDegree', inDegree);
-    console.log('queue', queue);
-  }
-
-  console.log('result', result);
-
-  return result.length === vertices ? result : []; // Check for cycles
-}
-
-const vertices = 6;
-const edges: [number, number][] = [
-  [5, 2],
-  [5, 0],
-  [4, 0],
-  [4, 1],
-  [2, 3],
-  [3, 1],
-];
-console.log(topologicalSort(vertices, edges));
+  it("should return the correct order for a graph with self-loops", () => {
+    expect(
+      topologicalSort(2, [
+        [0, 0],
+        [0, 1],
+      ])
+    ).toEqual([0, 1]);
+  });
+});

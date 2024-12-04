@@ -25,3 +25,5 @@ root.left.left = new TreeNode(4);
 root.left.right = new TreeNode(5);
 
 console.log(postOrderTraversal(root));
+
+export { TreeNode, postOrderTraversal };

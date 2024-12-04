@@ -1,42 +1,30 @@
-class UnionFind {
-    private parent: number[];
-    private rank: number[];
+import { UnionFind } from "../src/union_find";
 
-    constructor(size: number) {
-        this.parent = Array.from({ length: size }, (_, i) => i);
-        this.rank = Array(size).fill(0);
-    }
+describe("UnionFind.connected", () => {
+  it("should return true for two elements in the same set", () => {
+    const uf = new UnionFind(5);
+    uf.union(0, 1);
+    expect(uf.connected(0, 1)).toBe(true);
+  });
 
-    find(x: number): number {
-        if (this.parent[x] !== x) {
-            this.parent[x] = this.find(this.parent[x]); // Path compression
-        }
-        return this.parent[x];
-    }
+  it("should return false for two elements in different sets", () => {
+    const uf = new UnionFind(5);
+    uf.union(0, 1);
+    expect(uf.connected(0, 2)).toBe(false);
+  });
 
-    union(x: number, y: number): void {
-        const rootX = this.find(x);
-        const rootY = this.find(y);
+  it("should return true for the same element", () => {
+    const uf = new UnionFind(5);
+    expect(uf.connected(0, 0)).toBe(true);
+  });
 
-        if (rootX !== rootY) {
-            if (this.rank[rootX] > this.rank[rootY]) {
-                this.parent[rootY] = rootX;
-            } else if (this.rank[rootX] < this.rank[rootY]) {
-                this.parent[rootX] = rootY;
-            } else {
-                this.parent[rootY] = rootX;
-                this.rank[rootX]++;
-            }
-        }
-    }
+  it("should throw an error for out of range x", () => {
+    const uf = new UnionFind(5);
+    expect(() => uf.connected(5, 0)).toThrowError();
+  });
 
-    connected(x: number, y: number): boolean {
-        return this.find(x) === this.find(y);
-    }
-}
-
-const uf = new UnionFind(5);
-uf.union(0, 1);
-uf.union(1, 2);
-console.log(uf.connected(0, 2)); // true
-console.log(uf.connected(0, 3)); // false
+  it("should throw an error for out of range y", () => {
+    const uf = new UnionFind(5);
+    expect(() => uf.connected(0, 5)).toThrowError();
+  });
+});

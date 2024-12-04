@@ -1,23 +1,33 @@
-class TreeNode {
-    value: number;
-    left: TreeNode | null;
-    right: TreeNode | null;
+import { preOrderTraversal, TreeNode } from "../src/pre_order_traversal";
 
-    constructor(value: number) {
-        this.value = value;
-        this.left = this.right = null;
-    }
-}
+describe("preOrderTraversal", () => {
+  it("should return an empty array for an empty tree", () => {
+    expect(preOrderTraversal(null)).toEqual([]);
+  });
 
-function preOrderTraversal(node: TreeNode | null): number[] {
-    if (!node) return [];
-    return [node.value, ...preOrderTraversal(node.left), ...preOrderTraversal(node.right)];
-}
+  it("should return a single element array for a single node tree", () => {
+    const node = new TreeNode(1);
+    expect(preOrderTraversal(node)).toEqual([1]);
+  });
 
-const root = new TreeNode(1);
-root.left = new TreeNode(2);
-root.right = new TreeNode(3);
-root.left.left = new TreeNode(4);
-root.left.right = new TreeNode(5);
+  it("should return a correct array for a balanced binary tree", () => {
+    const root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(3);
+    expect(preOrderTraversal(root)).toEqual([1, 2, 3]);
+  });
 
-console.log(preOrderTraversal(root));
+  it("should return a correct array for an unbalanced binary tree", () => {
+    const root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.left.left = new TreeNode(3);
+    expect(preOrderTraversal(root)).toEqual([1, 2, 3]);
+  });
+
+  it("should return a correct array for a tree with duplicate values", () => {
+    const root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = new TreeNode(2);
+    expect(preOrderTraversal(root)).toEqual([1, 2, 2]);
+  });
+});

@@ -28,13 +28,6 @@ describe("Dijkstra shortestPath", () => {
     );
   });
 
-  it("should throw error for graph with negative weight edges", () => {
-    const dijkstra = new Dijkstra();
-    expect(() => dijkstra.addEdge(0, 1, -1)).toThrow(
-      "Negative weight edges are not supported"
-    );
-  });
-
   it("should return correct shortest distances for graph with disconnected vertices", () => {
     const dijkstra = new Dijkstra();
     dijkstra.addEdge(0, 1, 4);
@@ -43,8 +36,8 @@ describe("Dijkstra shortestPath", () => {
       new Map([
         [0, 0],
         [1, 4],
-        [2, Infinity], // Unreachable vertex should be Infinity
-        [3, Infinity], // Unreachable vertex should be Infinity
+        [2, Infinity],
+        [3, Infinity],
       ])
     );
   });
@@ -58,8 +51,15 @@ describe("Dijkstra shortestPath", () => {
       new Map([
         [0, 0],
         [1, 4],
-        [2, 6], // Even though there is a cycle, Dijkstra's algorithm works here
+        [2, 6],
       ])
+    );
+  });
+
+  it("should throw error for graph with negative weight edges", () => {
+    const dijkstra = new Dijkstra();
+    expect(() => dijkstra.addEdge(0, 1, -1)).toThrow(
+      "Negative weight edges are not supported"
     );
   });
 });

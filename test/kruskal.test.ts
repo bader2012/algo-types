@@ -1,46 +1,36 @@
-class Kruskal {
-    edges: { u: number; v: number; weight: number }[];
-    parent: number[];
+import Kruskal from "../src/kruskal";
 
-    constructor(size: number) {
-        this.edges = [];
-        this.parent = Array.from({ length: size }, (_, i) => i);
-    }
+describe("Kruskal.kruskalMST", () => {
+  it("should return 0 for empty graph", () => {
+    const kruskal = new Kruskal(0);
+    expect(kruskal.kruskalMST()).toEqual(0);
+  });
 
-    addEdge(u: number, v: number, weight: number) {
-        this.edges.push({ u, v, weight });
-    }
+  it("should return 0 for graph with self-loops", () => {
+    const kruskal = new Kruskal(1);
+    kruskal.addEdge(0, 0, 0);
+    expect(kruskal.kruskalMST()).toEqual(0);
+  });
 
-    find(x: number): number {
-        if (this.parent[x] !== x) {
-            this.parent[x] = this.find(this.parent[x]); // Path compression
-        }
-        return this.parent[x];
-    }
+  it("should return correct MST weight for simple graph", () => {
+    const kruskal = new Kruskal(4);
+    kruskal.addEdge(0, 1, 10);
+    kruskal.addEdge(0, 2, 6);
+    kruskal.addEdge(1, 2, 3);
+    kruskal.addEdge(1, 3, 5);
+    kruskal.addEdge(2, 3, 1);
+    expect(kruskal.kruskalMST()).toEqual(19);
+  });
 
-    union(x: number, y: number): void {
-        this.parent[this.find(x)] = this.find(y);
-    }
-
-    kruskalMST(): number {
-        this.edges.sort((a, b) => a.weight - b.weight);
-        let totalWeight = 0;
-
-        for (const { u, v, weight } of this.edges) {
-            if (this.find(u) !== this.find(v)) {
-                totalWeight += weight;
-                this.union(u, v);
-            }
-        }
-
-        return totalWeight;
-    }
-}
-
-const kruskal = new Kruskal(5);
-kruskal.addEdge(0, 1, 10);
-kruskal.addEdge(0, 2, 6);
-kruskal.addEdge(0, 3, 5);
-kruskal.addEdge(1, 3, 15);
-kruskal.addEdge(2, 3, 4);
-console.log(kruskal.kruskalMST()); // Output: Total weight of MST
+  it("should return correct MST weight for graph with cycles", () => {
+    const kruskal = new Kruskal(5);
+    kruskal.addEdge(0, 1, 10);
+    kruskal.addEdge(0, 2, 6);
+    kruskal.addEdge(0, 3, 5);
+    kruskal.addEdge(1, 3, 15);
+    kruskal.addEdge(2, 3, 4);
+    kruskal.addEdge(3, 4, 8);
+    kruskal.addEdge(4, 0, 7);
+    expect(kruskal.kruskalMST()).toEqual(22);
+  });
+});

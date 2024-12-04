@@ -1,30 +1,37 @@
-class GraphDFS {
-    private adjacencyList: Map<number, number[]> = new Map();
+import GraphDFS from "../src/depth_first_search";
 
-    addEdge(vertex: number, neighbor: number) {
-        if (!this.adjacencyList.has(vertex)) {
-            this.adjacencyList.set(vertex, []);
-        }
-        this.adjacencyList.get(vertex)!.push(neighbor);
-    }
+describe("GraphDFS.dfs", () => {
+  it("should return an empty array for an empty graph", () => {
+    const graph = new GraphDFS();
+    expect(graph.dfs(1)).toEqual([]);
+  });
 
-    dfs(start: number, visited = new Set<number>(), result: number[] = []): number[] {
-        if (!visited.has(start)) {
-            visited.add(start);
-            result.push(start);
+  it("should return a single node for a graph with a single node", () => {
+    const graph = new GraphDFS();
+    graph.addEdge(1, 1);
+    expect(graph.dfs(1)).toEqual([1]);
+  });
 
-            for (const neighbor of this.adjacencyList.get(start) || []) {
-                this.dfs(neighbor, visited, result);
-            }
-        }
+  it("should return all nodes in the correct order for a graph with multiple nodes and edges", () => {
+    const graph = new GraphDFS();
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 3);
+    graph.addEdge(2, 4);
+    graph.addEdge(3, 5);
+    expect(graph.dfs(1)).toEqual([1, 2, 4, 3, 5]);
+  });
 
-        return result;
-    }
-}
+  it("should return all nodes in the correct order for a graph with cycles", () => {
+    const graph = new GraphDFS();
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 1);
+    expect(graph.dfs(1)).toEqual([1, 2, 3]);
+  });
 
-const graphDFS = new GraphDFS();
-graphDFS.addEdge(1, 2);
-graphDFS.addEdge(1, 3);
-graphDFS.addEdge(2, 4);
-graphDFS.addEdge(3, 5);
-console.log(graphDFS.dfs(1));
+  it("should return an empty array for a start node that is not in the graph", () => {
+    const graph = new GraphDFS();
+    graph.addEdge(1, 2);
+    expect(graph.dfs(3)).toEqual([]);
+  });
+});

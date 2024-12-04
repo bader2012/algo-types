@@ -1,23 +1,33 @@
-function mergeSort(arr: number[]): number[] {
-    if (arr.length <= 1) return arr;
+import mergeSort from "../src/merge_sort";
 
-    const mid = Math.floor(arr.length / 2);
-    const left = mergeSort(arr.slice(0, mid));
-    const right = mergeSort(arr.slice(mid));
+describe("mergeSort", () => {
+  it("should return an empty array for an empty input", () => {
+    expect(mergeSort([])).toEqual([]);
+  });
 
-    return merge(left, right);
-}
+  it("should return a single element array for a single element input", () => {
+    expect(mergeSort([1])).toEqual([1]);
+  });
 
-function merge(left: number[], right: number[]): number[] {
-    let result: number[] = [];
-    let i = 0, j = 0;
+  it("should return an already sorted array for an already sorted input", () => {
+    expect(mergeSort([1, 2, 3, 4, 5])).toEqual([1, 2, 3, 4, 5]);
+  });
 
-    while (i < left.length && j < right.length) {
-        if (left[i] < right[j]) result.push(left[i++]);
-        else result.push(right[j++]);
-    }
+  it("should sort an unsorted array with multiple elements", () => {
+    expect(mergeSort([5, 3, 8, 4, 2])).toEqual([2, 3, 4, 5, 8]);
+  });
 
-    return result.concat(left.slice(i), right.slice(j));
-}
+  it("should sort an array with duplicate elements", () => {
+    expect(mergeSort([5, 3, 3, 4, 2])).toEqual([2, 3, 3, 4, 5]);
+  });
 
-console.log(mergeSort([5, 3, 8, 4, 2]));
+  it("should sort an array with negative numbers", () => {
+    expect(mergeSort([-5, -4, -3, -2, -1])).toEqual([-5, -4, -3, -2, -1]);
+  });
+
+  it("should sort an array with large numbers", () => {
+    expect(mergeSort([1000, 2000, 3000, 4000, 5000])).toEqual([
+      1000, 2000, 3000, 4000, 5000,
+    ]);
+  });
+});
