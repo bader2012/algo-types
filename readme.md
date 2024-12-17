@@ -61,14 +61,12 @@ To use the algorithms in this repository:
 
 1. Clone the repository:
    git clone https://github.com/bader2012/algo-types.git
-   Navigate to the project directory:
+2. Navigate to the project directory:
    cd ts-algorithms
-   Install the necessary dependencies (if needed):
+3. Install the necessary dependencies:
    pnpm install
-
-   Run the algorithms:
+4. Run the algorithms:
    npm run <algorithm-name>
-
    Replace `<algorithm-name>` with the name of the algorithm you want to run, look at the package.json file.
 
 ## Contributing
