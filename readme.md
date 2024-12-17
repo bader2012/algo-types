@@ -6,7 +6,6 @@ This repository contains a collection of various algorithms implemented in TypeS
 
 - [Algorithms](#algorithms)
 - [Setup](#setup)
-- [Running Tests](#running-tests)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -72,10 +71,12 @@ To use the algorithms in this repository:
 
    Replace `<algorithm-name>` with the name of the algorithm you want to run, look at the package.json file.
 
-Contributing
+## Contributing
+
 Contributions are welcome! If you have a suggestion for an algorithm or improvement, please fork the repository and create a pull request. Make sure to update any relevant tests and documentation.
 
-License
+## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 You can adjust the specific testing framework or any other setup steps based on your actual project setup.
