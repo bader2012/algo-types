@@ -14,7 +14,6 @@ This repository contains a collection of various algorithms implemented in TypeS
 
 1. **Binary Search** - `binary_search.ts`  
    An efficient algorithm for finding an item from a sorted list of items.
-   
 2. **Breadth First Search (BFS)** - `breadth_first_search.ts`  
    A graph traversal algorithm that explores neighbors level by level.
 
@@ -63,11 +62,14 @@ To use the algorithms in this repository:
 
 1. Clone the repository:
    git clone https://github.com/your-username/ts-algorithms.git
-Navigate to the project directory:
+   Navigate to the project directory:
    cd ts-algorithms
-Install the necessary dependencies (if needed):
+   Install the necessary dependencies (if needed):
    pnpm install
-   
+
+   Run the algorithms:
+   npm run <algorithm-name>
+
 ## Running Tests
 
 To run tests for the algorithms that include them:
@@ -75,8 +77,8 @@ To run tests for the algorithms that include them:
 Ensure you have pnpm installed.
 Run the tests using a testing framework such as Jest or Mocha (if tests are present):
 
-   pnpm test
-   
+pnpm test
+
 Contributing
 Contributions are welcome! If you have a suggestion for an algorithm or improvement, please fork the repository and create a pull request. Make sure to update any relevant tests and documentation.
 
