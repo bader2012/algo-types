@@ -70,14 +70,7 @@ To use the algorithms in this repository:
    Run the algorithms:
    npm run <algorithm-name>
 
-## Running Tests
-
-To run tests for the algorithms that include them:
-
-Ensure you have pnpm installed.
-Run the tests using a testing framework such as Jest or Mocha (if tests are present):
-
-pnpm test
+   Replace `<algorithm-name>` with the name of the algorithm you want to run, look at the package.json file.
 
 Contributing
 Contributions are welcome! If you have a suggestion for an algorithm or improvement, please fork the repository and create a pull request. Make sure to update any relevant tests and documentation.
