@@ -67,6 +67,7 @@ To use the algorithms in this repository:
    pnpm install
 4. Run the algorithms:
    npm run `<algorithm-name>`
+
 Replace `<algorithm-name>` with the name of the algorithm you want to run, look at the package.json file.
 
 ## Contributing
