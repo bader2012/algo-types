@@ -62,33 +62,25 @@ This repository contains a collection of various algorithms implemented in TypeS
 To use the algorithms in this repository:
 
 1. Clone the repository:
-   ```bash
    git clone https://github.com/your-username/ts-algorithms.git
 Navigate to the project directory:
-
-bash
-Copy code
-cd ts-algorithms
+   cd ts-algorithms
 Install the necessary dependencies (if needed):
+   pnpm install
+   
+## Running Tests
 
-bash
-Copy code
-pnpm install
-Running Tests
 To run tests for the algorithms that include them:
 
 Ensure you have pnpm installed.
 Run the tests using a testing framework such as Jest or Mocha (if tests are present):
-bash
-Copy code
-pnpm test
+
+   pnpm test
+   
 Contributing
 Contributions are welcome! If you have a suggestion for an algorithm or improvement, please fork the repository and create a pull request. Make sure to update any relevant tests and documentation.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-arduino
-Copy code
 
 You can adjust the specific testing framework or any other setup steps based on your actual project setup.
