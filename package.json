@@ -1,10 +1,40 @@
 {
+  "name": "ts-algorithms",
+  "version": "1.0.0",
+  "description": "A collection of various algorithms implemented in TypeScript.",
+  "main": "index.js",
   "scripts": {
+    "start": "echo \"Use npx ts-node src/<filename> to run an algorithm\"",
+    "binary-search": "npx ts-node src/binary_search.ts",
+    "breadth-first-search": "npx ts-node src/breadth_first_search.ts",
+    "bubble-sort": "npx ts-node src/bubble_sort.ts",
+    "depth-first-search": "npx ts-node src/depth_first_search.ts",
+    "dijkstra": "npx ts-node src/dijkstra.ts",
+    "floyd-warshall": "npx ts-node src/floyd_warshall.ts",
+    "in-order-traversal": "npx ts-node src/in_order_traversal.ts",
+    "kruskal": "npx ts-node src/kruskal.ts",
+    "merge-sort": "npx ts-node src/merge_sort.ts",
+    "post-order-traversal": "npx ts-node src/post_order_traversal.ts",
+    "pre-order-traversal": "npx ts-node src/pre_order_traversal.ts",
+    "prim": "npx ts-node src/prim.ts",
+    "quick-sort": "npx ts-node src/quick_sort.ts",
+    "topological-sort": "npx ts-node src/topological_sort.ts",
+    "union-find": "npx ts-node src/union_find.ts",
     "test": "jest"
   },
+  "keywords": [
+    "algorithms",
+    "typescript",
+    "data-structures"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "jest": "^29.7.0",
-    "ts-jest": "^29.2.5"
-  }
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {}
 }
