@@ -60,7 +60,7 @@ This repository contains a collection of various algorithms implemented in TypeS
 To use the algorithms in this repository:
 
 1. Clone the repository:
-   git clone https://github.com/your-username/ts-algorithms.git
+   git clone https://github.com/bader2012/algo-types.git
    Navigate to the project directory:
    cd ts-algorithms
    Install the necessary dependencies (if needed):
